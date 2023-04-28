@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>{% block title %}SPORTIFLY{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+  ================================================== -->
+    {% block stylesheets %}
+
+        <link rel="stylesheet" href="{{ asset('frontoffice/news/css/base.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontoffice/news/css/vendor.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontoffice/news/css/main.css') }}" >
+    {% endblock %}
+
+
+
+    <!-- script
+    ================================================== -->
+
+
+    <!-- favicons
+     ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+{% block body%}
+<body id="top">
+
+<!-- header
+================================================== -->
+
+
+
+<!-- masonry
+================================================== -->
+<section id="bricks">
+
+    <div class="row masonry">
+
+        <!-- brick-wrapper -->
+        <div class="bricks-wrapper">
+
+            <div class="grid-sizer"></div>
+
+        <h2>{{ actualite.titre }}</h2>
+        <div class="photo">
+            <img src="{{ asset('uploads/images/'~ actualite.image ) }}" alt="">
+        </div>
+        <p>{{ actualite.date|date("F jS \\a\\t g:ia") }}</p>
+        <p>{{ actualite.categorie }}</p>
+        <p>{{ actualite.description }}</p>
+        <h4>Commentaires:</h4>
+        {% for commentaire in actualite.commentaireActs %}
+            <div class="commentaire">
+
+                <span class="date">{{ commentaire.date | date("d/m/Y H:i") }}</span>
+                <p>{{ commentaire.contenu }}</p>
+
+                {% if (app.user.getId())== commentaire.iduser.id %}
+                <div class="action-button">
+                    <div>
+                        <button class="btn1"><a  href="{{ path('app_updateCom',{'id':commentaire.id,'id2':commentaire.idactualite}) }}"class="btn btn-primary" tabindex="-1" role="button" >Update</a></button>
+
+                    </div>
+                    <div class="bookmark">
+                        <button class="btn1"><a  href="{{ path('app_supprimerCom',{'id':commentaire.id,'id2':commentaire.idactualite}) }}"class="btn btn-primary" tabindex="-1" role="button" >delete</a></button>
+
+                    </div>
+                </div>
+                {%endif%}
+
+                {# <a href="{{ path('app_updateCom', {'id': commentaire.id}) }}"><i class="fas fa-edit"></i> Modifier</a>
+                    <a href="{{ path('app_supprimerCom', {'id': commentaire.id}) }}"><i class="fas fa-trash"></i> Supprimer</a>#}
+            </div>
+        {% endfor %}
+
+        <br>
+        {%if (app.user)%}
+        <h4>Ajouter commentaire</h4>
+        {{ form_start(form,{'atte':{'novalidate':'novalidate'}}) }}
+        {{form_row(form.contenu)}}
+        {{form_end(form)}}
+            {%else%}
+            <buttton style="background: green; border-radius:18rem;" ><a href="{{asset('login')}}">sign in</a></buttton>
+            {%endif%}
+    </div>
+    </div> <!-- end brick-wrapper -->
+
+    </div> <!-- end row -->
+
+
+
+</section> <!-- end bricks -->
+
+
+
+<!-- Java Script
+================================================== -->
+<script src="{{ asset('frontoffice/news/js/modernizr.js') }}"></script>
+<script src="{{ asset('frontoffice/news/js/pace.js') }}"></script>
+<script src="{{ asset('frontoffice/news/js/jquery-2.1.3.min.js') }}"></script>
+<script src="{{ asset('frontoffice/news/js/plugins.js') }}"></script>
+<script src="{{ asset('frontoffice/news/js/jquery.appear.js') }}"></script>
+<script src="{{ asset('frontoffice/news/js/main.js') }}"></script>
+
+</body>
+{%endblock%}
+
+</html>

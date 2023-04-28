@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %}Welcome to sportifly!{% endblock %}</title>
+
+{% block stylesheets %}
+    <div class="body">
+        <nav>
+            <div class="container">
+                <div class="logo">
+                    <img src="{{ asset('frontoffice/images/logo.png') }}" alt="#" style="width:20%;">
+                </div>
+            </div>
+        </nav>
+    </div>
+
+<link href="{{ asset('https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet')}}">
+
+<link rel="stylesheet" href="{{ asset('fonts/icomoon/style.css')}}">
+
+<link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css')}}">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
+
+<!-- Style -->
+<link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+<title>Login #8</title>
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{ asset('js/popper.min.js')}}"></script>
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('js/main.js')}}"></script>
+    {# TRADUCTION #}
+    <style>
+        #google_translate_element {
+            display: inline-block;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #b0f2b6;
+            border: 1px solid #b0f2b6;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+
+        #google_translate_element:hover {
+            cursor: pointer;
+            opacity: 0.9;
+            background-color: #b0f2b6;
+        }
+        #google_translate_element {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+    </style>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    {# TRADUCTION #}
+
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+{% endblock %}
+{% block body %}
+    {% endblock %}
+
+{% endblock %}
+
+</html>

@@ -1,0 +1,44 @@
+{% extends 'baseadmin.html.twig' %}
+
+
+{% block title  %}Liste participants {% endblock %}
+
+{% block body %}
+<div style="position: absolute; margin-left: 500px; margin-top: 100px">
+    <h4>Liste participants</h4>
+
+    
+    <table class="table table-striped">
+    <tr>
+        <td>Id</td>
+        <td>Participant</td>
+        <td>Event</td>
+        <td>Numero</td>
+      
+
+
+
+    </tr>
+    {% for i in tabParticipants %}
+        <tr>
+
+            <td>{{ i.id }}</td>
+            <td>{{ i.iduser.id}}</td>
+            <td>{{ i.getEvent }}</td>
+            <td>{{i.dateParticipation|date("m/d/Y") }}</td>
+            <td><a href="{{ path('app_updatePar',{'id':i.id}) }}"  class="btn btn-primary" tabindex="-1" role="button" >Update</a> </td>
+            <td><a  href="{{ path('app_removePar',{'id':i.id}) }}"class="btn btn-primary" tabindex="-1" role="button" >delete</a> </td>
+
+           
+            <br>
+        </tr>
+        
+    
+
+
+
+
+</div>
+    {% endfor %}
+    <a class="btn btn-success" href="{{ path('pdf') }}">Create pdf</a>
+    </table>{% endblock %}

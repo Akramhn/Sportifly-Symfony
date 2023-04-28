@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title  %} Liste Activités {% endblock %}
+ {% block stylesheets %}
+
+
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/table.css') }}">
+
+ {% endblock %}
+{% block middle %}
+    <div class="middle">
+        <h4>List activités</h4>
+
+        <a href="{{path('app_addactiviter_front')}}" class="btn btn-primary" tabindex="-1" role="button">Ajouter activité</a>
+
+
+        <table class="styled-table">
+            <thead>
+            <tr>
+
+                <td><b>Titre</b></td>
+                <td><b>Date_debut</b></td>
+                <td><b>Date_fin</b></td>
+                <td><b>Update</b></td>
+                <td><b>Delet</b></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                {% for i in tabActiviter%}
+            <tr>
+                <td>{{ i.titre }}</td>
+                <td>{{i.datedebut|date("m/d/Y H:i") }}</td>
+                <td>{{i.datefin|date("m/d/Y H:i") }}</td>
+
+                <td><a href="{{ path('app_updateactiviter_front',{'id':i.id}) }}"  class="btn btn-primary" tabindex="-1" role="button" >Update</a></td>
+                <td>  <a  href="{{ path('app_removeactiviter',{'id':i.id}) }}"class="btn btn-primary" tabindex="-1" role="button" >delete</a> </td>
+
+
+            </tr>
+
+
+            {% endfor %}
+            </tr>
+
+            <!-- and so on... -->
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+
+
+

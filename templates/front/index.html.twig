@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <!-- ICONSCOUT CDN -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontoffice/css/form.css') }}">
+{% endblock %}
+
+{% block title %}Les actualites{% endblock %}
+
+{% block middle %}
+    <div class="middle">
+
+
+        <!------------------- STORIES -------------------->
+        <div class="stories">
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-20.jpg')}}">
+                </div>
+                <p class="name">Your Story</p>
+            </div>
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-9.jpg')}}">
+                </div>
+                <p class="name">Lilla James </p>
+            </div>
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-10.jpg')}}">
+                </div>
+                <p class="name">Winnie Hale</p>
+            </div>
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-11.jpg')}}">
+                </div>
+                <p class="name">Daniel Bale</p>
+            </div>
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-12.jpg')}}">
+                </div>
+                <p class="name">Jane Doe</p>
+            </div>
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-8.jpg')}}">
+                </div>
+                <p class="name">Tina White</p>
+            </div>
+        </div>
+        <!------------------- END OF STORIES -------------------->
+        <h1>Liste des actualites</h1>
+        <!--------------- FEEDS ----------->
+        <form action="{{ path('app_recherche') }}" method="get">
+            <input type="search" name="q" placeholder="Recherche...">
+            <button type="submit">Recherche</button>
+        </form>
+
+        {% for actualite in actualites %}
+
+
+            <article class="brick entry format-standard animate-this">
+                <div class="entry-thumb">
+                    <a href="{{ path('app_ajouterCom', {'id': actualite.id}) }}" class="thumb-link">
+                        <img src="{{ asset('uploads/images/'~ actualite.image ) }}" alt="">
+                    </a>
+                </div>
+                <div class="entry-text">
+                    <div class="entry-header">
+                        <div class="entry-meta">
+                <span class="cat-links">
+                    {{ actualite.categorie }}
+                </span>
+                        </div>
+                        <h1 class="entry-title">
+                            <a href="{{ path('app_ajouterCom', {'id': actualite.id}) }}">
+                                {{ actualite.titre }}
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="entry-excerpt">
+                        {{ actualite.description }}
+                    </div>
+                    <p>{{ actualite.date|date("F jS \\a\\t g:ia") }}</p>
+
+                </div>
+            </article>
+
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

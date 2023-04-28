@@ -1,0 +1,177 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Liste Events{% endblock %}
+
+    {% block style %}
+    {{parent()}}
+    {% endblock %}
+
+    {% block stylesheets %}
+    {{parent()}}
+    {% endblock %}
+
+{% block body %}
+
+
+    <div style="position: absolute; margin-left: 500px; margin-top: 100px">
+
+    <div class="weather-container">
+  <div class="weather-card">
+    <div class="search">
+      <input type="text" class="search-bar" placeholder="Search">
+      <button class="weather-button"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1.5em"
+          width="1.5em" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z">
+          </path>
+        </svg></button>
+    </div>
+    <div class="weather loading">
+      <h2 class="city">Weather in Denver</h2>
+      <h1 class="temp">51°C</h1>
+      <div class="flex">
+        <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
+        <div class="description">Cloudy</div>
+      </div>
+      <div class="humidity">Humidity: 60%</div>
+      <div class="wind">Wind speed: 6.2 km/h</div>
+    </div>
+  </div>
+  </div>
+
+
+    <h4>List Events</h4>  
+
+    <form id="search-form" action="{{ path('event_search') }}" method="get">
+        <div class="form-group">
+            <input type="text" name="q" class="form-control" value="{{ query }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <hr>
+
+    <a href="{{path('app_addevent')}}" class="btn btn-primary" tabindex="-1" role="button">Add Event</a>
+    <a href="{{path('app_listParticipants')}}" class="btn btn-primary" tabindex="-1" role="button">Consult Participants List</a>
+    <table class="table table-striped">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Titre</td>
+        <td>Date</td>
+        <td>Description</td>
+        <td>image</td>
+        <td>lieu</td>
+         <td>update</td>
+        <td>delete</td>
+
+
+
+    </tr>
+    </thead>
+
+    <tbody id="search-results">
+        {% for event in tabEvents %}
+        <tr>
+
+            <td>{{ event.id }}</td>
+            <td>{{ event.titre }}</td>
+            <td>{{event.date|date("m/d/Y") }}</td>
+            <td>{{ event.description }}</td>
+        <td>
+          <img
+            src="{{ asset('uploads/event/' ~ event.img) }}"
+            alt=""
+            width="100"
+            height="100"
+          />
+        </td>
+            <td>{{ event.lieu }}</td>
+            <td><a href="{{ path('app_updateEvent',{'id':event.id}) }}"  class="btn btn-primary" tabindex="-1" role="button" >Update</a> </td>
+            <td><a  href="{{ path('app_removeEvent',{'id':event.id}) }}"class="btn btn-primary" tabindex="-1" role="button" >delete</a> </td>
+
+            <br>
+        </tr>
+        {% else %}
+            <li>No results found</li>
+        {% endfor %}
+    </tbody>
+    <a class="btn btn-primary" href="{{path('trie')}}">Tri par date</a>
+     
+    </table>
+    </div>
+    
+<script>
+let weather = {
+  apiKey: "e6592b18a1a977d9461f0c69fdaeff06",
+  fetchWeather: function (city) {
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+        city +
+        "&units=metric&appid=" +
+        this.apiKey
+    )
+      .then((response) => {
+        if (!response.ok) {
+          alert("No weather found.");
+          throw new Error("No weather found.");
+        }
+        return response.json();
+      })
+      .then((data) => this.displayWeather(data));
+  },
+  displayWeather: function (data) {
+    const { name } = data;
+    const { icon, description } = data.weather[0];
+    const { temp, humidity } = data.main;
+    const { speed } = data.wind;
+    document.querySelector(".city").innerText = "Weather in " + name;
+    document.querySelector(".icon").src =
+      "https://openweathermap.org/img/wn/" + icon + ".png";
+    document.querySelector(".description").innerText = description;
+    document.querySelector(".temp").innerText = temp + "°C";
+    document.querySelector(".humidity").innerText =
+      "Humidity: " + humidity + "%";
+    document.querySelector(".wind").innerText =
+      "Wind speed: " + speed + " km/h";
+    document.querySelector(".weather").classList.remove("loading");
+  },
+  search: function () {
+    this.fetchWeather(document.querySelector(".search-bar").value);
+  },
+};
+
+document.querySelector(".search button").addEventListener("click", function () {
+  weather.search();
+});
+
+document
+  .querySelector(".search-bar")
+  .addEventListener("keyup", function (event) {
+    if (event.key == "Enter") {
+      weather.search();
+    }
+  });
+
+weather.fetchWeather("Tunisia");
+</script>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(function () {
+            $('#search-form').submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        $('#search-results').html(data);
+                    }
+                });
+            });
+        });
+    </script>
+
+{% endblock %}

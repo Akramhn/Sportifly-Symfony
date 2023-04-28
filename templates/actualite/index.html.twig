@@ -1,0 +1,36 @@
+{% extends 'baseadmin.html.twig'%}
+
+{% block title  %}Les actualite{% endblock %}
+{%block body %}
+    <div style="position: absolute; margin-left: 300px; margin-top: 100px">
+    <h4>list actualites</h4>
+    <a href="{{ path('app_ajouteractualite') }}">ajouter actualite</a>
+    <table border="2">
+        <tr>
+            <td>id</td>
+            <td>titre</td>
+            <td>image</td>
+            <td>date</td>
+            <td>description</td>
+            <td>categorie</td>
+        </tr>
+        {% for i in form%}
+            <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.titre}}</td>
+        {#<td>{{i.image}}</td>#}
+         <td>  <div class="photo">
+                <img style ="width:100px;height: 100px;"src="{{ asset('uploads/images/'~ i.image ) }}" alt="">
+            </div>  </td>
+        <td>{{i.date|date("F jS \\a\\t g:ia")}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.categorie}}</td>
+       <td><a href="{{path('app_apdateactualite',{'id':i.id})}}">Update</a></td>
+                <td><a href="{{path('app_supprimeractualite',{'id':i.id})}}">delete</a> </td>
+                <td><a href="{{path('app_ajoutercommentaireAct',{'id':i.id})}}">ajouter commentaire</a> </td>
+            <br>
+       </tr>
+</div>
+       {%endfor%}
+</table>
+{%endblock%}

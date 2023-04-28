@@ -1,0 +1,67 @@
+{% extends 'baseadmin.html.twig' %}
+
+
+{% block title  %}Les offres {% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('backoffice/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('frontoffice/css/table.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+{% endblock %}
+
+{% block body %}
+ <div style="position: absolute; margin-left: 300px; margin-top: 100px">
+    <h4>List Offres</h4>
+
+    <a href="{{path('app_addOffre')}}" class="btn btn-primary" tabindex="-1" role="button">Add Offre</a>
+     <li>
+         <a href="#">Trie</a>
+         <ul>
+             <li><a href="{{ path('order_By_Date_desc')}}">Trie par Date order Desc</a></li>
+
+         </ul>
+     </li>
+     <br>
+     <br>
+     <div>
+         <input type="search" id="myInput" class="form-control pl-6" placeholder="Search Offre"/>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+         <script>
+             $(document).ready(function () {
+                 $("#myInput").on("keyup", function () {
+                     var value = $(this).val().toLowerCase();
+                     $(".styled-table tr:not(:first-child)").filter(function () {
+                         $(this).toggle($(this).find('.searchable').text().toLowerCase().indexOf(value) > -1)
+                     });
+                 })
+             });
+         </script>
+     </div>
+
+     <table class="styled-table" >
+         <tr>
+             <td>Description</td>
+             <td>prix</td>
+             <td>Date</td>
+             <td>Affiche</td>
+             <td>update</td>
+             <td>delete</td>
+             <td>Reserver</td>
+             <td>Show</td>
+         </tr>
+         {% for i in listOffre%}
+             <tr>
+                 <td class="searchable">{{ i.description }}</td>
+                 <td class="searchable">{{ i.prix }}</td>
+                 <td class="searchable">{{i.date|date("m/d/Y") }}</td>
+                 <td class="searchable">{{ i.affiche }}</td>
+                 <td><a href="{{ path('app_editOffre',{'id':i.id}) }}"  class="btn btn-primary" tabindex="-1" role="button" >Update</a></td>
+                 <td><a href="{{ path('app_removeOffreBack',{'id':i.id}) }}"class="btn btn-primary" tabindex="-1" role="button" >delete</a></td>
+                 <td><a href="{{ path('app_reserverOffre',{'id':i.id}) }}"class="btn btn-primary" tabindex="-1" role="button" >Reserver</a></td>
+                 <td><a href="{{ path('app_reserverOffre',{'id':i.id}) }}"class="btn btn-primary" tabindex="-1" role="button" >show</a></td>
+             </tr>
+         {% endfor %}
+     </table>
+
+ </div>
+     {% endblock %}

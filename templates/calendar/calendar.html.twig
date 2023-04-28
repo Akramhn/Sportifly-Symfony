@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title  %} Calender {% endblock %}
+ {% block stylesheets %}
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+        <style>
+            #calendrier{
+                width:120%;
+                margin:20px 30px 50px -80px ;
+
+            }
+       </style>
+     <!-- ICONSCOUT CDN -->
+     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+     <!-- STYLESHEET -->
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
+ {% endblock %}
+{% block middle %}
+
+    <div class="middle">
+        <div id="calendrier">
+
+        </div>
+
+ </div>
+{% endblock %}
+ {% block javascripts %}
+
+     <script>
+
+
+         window.onload = () =>{
+             let calendarElt=document.querySelector("#calendrier")
+             let calendar=new FullCalendar.Calendar(calendarElt,{
+                initialView: 'dayGridMonth',
+                 locale:'fr',
+                 headerToolbar:{
+                     start: 'prev,next today',
+                     center:'title',
+                     end: 'dayGridMonth, timeGridWeek'
+
+
+                 },
+                 allDaySlot: false,
+                 events:{{data|raw}},
+                 editable: true,
+                 eventResizableFromStart: true
+
+             })
+             calendar.on('eventChange',(e)=>{
+                 console.log(e)
+                 }
+             )
+             calendar.render()
+         }
+
+     </script>
+     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.js" integrity="sha256-oenhI3DRqaPoTMAVBBzQUjOKPEdbdFFtTCNIosGwro0=" crossorigin="anonymous"></script>
+
+ {% endblock %}
+{%block right%} <div class="right">
+    <a href="{{path('app_qr')}}" class="btn btn-primary" style="">Generate Code Qr</a>
+</div> {%endblock%}
+
+
+
+
+

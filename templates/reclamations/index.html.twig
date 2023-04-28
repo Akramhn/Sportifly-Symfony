@@ -1,0 +1,58 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Reclamations index{% endblock %}
+
+{% block body %}
+<style>
+
+    .fa-chart-bar{
+        background-color: white;
+        border-color: #20c997;
+    }
+</style>
+<div style="position: absolute; margin-left:500px; margin-top: 100px">
+    <h1>Reclamations </h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Etat</th>
+                <th>date</th>
+                <th>ID_User</th>
+                <th>actions</th>
+                <a href="{{ path('app_reclamation_stat') }}" class="btn btn-primary" tabindex="-1" role="button">Statistique</a
+            </tr>
+
+        </thead>
+        <tbody>
+        {% for reclamation in reclamation %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.type }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.etat ? 'Yes' : 'No' }}</td>
+
+                <td>{{ reclamation.Date ? reclamation.Date|date('Y-m-d') : '' }}</td>
+                <td> {{ reclamation.User}}</td>
+                <td>
+                <td>
+
+                    <a href="{{ path('app_reclamations_show', {'id': reclamation.id}) }}" class="btn btn-primary" tabindex="-1" role="button">afficher detail</a>
+
+                   {# <a href="{{ path('PDF_Reclamation') }}" class="btn btn-primary" tabindex="-1" role="button">PDF</a>#}
+
+                </td>
+
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

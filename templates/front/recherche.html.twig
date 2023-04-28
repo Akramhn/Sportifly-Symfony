@@ -1,0 +1,178 @@
+{#{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <!-- ICONSCOUT CDN -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontoffice/css/form.css') }}">
+{% endblock %}
+
+
+{% block middle %}
+
+    <h1>Résultats de la recherche pour "{{ query }}"</h1>
+
+    {% if actualites is empty %}
+        <p>Aucun résultat trouvé.</p>
+    {% else %}
+        <ul>
+            {% for actualite in actualites %}
+                <li>
+                    <article class="brick entry format-standard animate-this">
+                        <div class="entry-thumb">
+                            <a href="{{ path('app_ajouterCom', {'id': actualite.id}) }}" class="thumb-link">
+                                <img src="{{ asset('uploads/images/'~ actualite.image ) }}" alt="">
+                            </a>
+                        </div>
+                        <div class="entry-text">
+                            <div class="entry-header">
+                                <div class="entry-meta">
+                <span class="cat-links">
+                    {{ actualite.categorie }}
+                </span>
+                                </div>
+                                <h1 class="entry-title">
+                                    <a href="{{ path('app_ajouterCom', {'id': actualite.id}) }}">
+                                        {{ actualite.titre }}
+                                    </a>
+                                </h1>
+                            </div>
+                            <div class="entry-excerpt">
+                                {{ actualite.description }}
+                            </div>
+                            <p>{{ actualite.date|date("F jS \\a\\t g:ia") }}</p>
+
+                        </div>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+
+#}
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>{% block title %}SPORTIFLY{% endblock %}</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+  ================================================== -->
+    {% block stylesheets %}
+
+        <link rel="stylesheet" href="{{ asset('frontoffice/news/css/base.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontoffice/news/css/vendor.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontoffice/news/css/main.css') }}" >
+    {% endblock %}
+
+
+
+    <!-- script
+    ================================================== -->
+
+
+    <!-- favicons
+     ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+{% block body%}
+<body id="top">
+
+<!-- header
+================================================== -->
+
+
+
+<!-- masonry
+================================================== -->
+<section id="bricks">
+
+    <div class="row masonry">
+
+        <!-- brick-wrapper -->
+        <div class="bricks-wrapper">
+
+            <div class="grid-sizer"></div>
+
+
+
+
+<div id="search-results">
+
+    <h1>Résultats de la recherche pour "{{ query }}"</h1>
+
+    {% if actualites is empty %}
+        <p>Aucun résultat trouvé.</p>
+    {% else %}
+        <ul>
+            {% for actualite in actualites %}
+
+
+                    <article class="brick entry format-standard animate-this" style="margin-top: 80px">
+                        <div class="entry-thumb">
+                            <a href="{{ path('app_ajouterCom', {'id': actualite.id}) }}" class="thumb-link">
+                                <img src="{{ asset('uploads/images/'~ actualite.image ) }}" alt="">
+                            </a>
+                        </div>
+                        <div class="entry-text">
+                            <div class="entry-header">
+                                <div class="entry-meta">
+                <span class="cat-links">
+                    {{ actualite.categorie }}
+                </span>
+                                </div>
+                                <h1 class="entry-title">
+                                    <a href="{{ path('app_ajouterCom', {'id': actualite.id}) }}">
+                                        {{ actualite.titre }}
+                                    </a>
+                                </h1>
+                            </div>
+                            <div class="entry-excerpt">
+                                {{ actualite.description }}
+                            </div>
+                            <p>{{ actualite.date|date("F jS \\a\\t g:ia") }}</p>
+
+                        </div>
+                    </article>
+
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+
+</div>
+
+
+            <!-- Java Script
+            ================================================== -->
+            <script src="{{ asset('frontoffice/news/js/modernizr.js') }}"></script>
+            <script src="{{ asset('frontoffice/news/js/pace.js') }}"></script>
+            <script src="{{ asset('frontoffice/news/js/jquery-2.1.3.min.js') }}"></script>
+            <script src="{{ asset('frontoffice/news/js/plugins.js') }}"></script>
+            <script src="{{ asset('frontoffice/news/js/jquery.appear.js') }}"></script>
+            <script src="{{ asset('frontoffice/news/js/main.js') }}"></script>
+
+</body>
+{%endblock%}
+
+</html>
+

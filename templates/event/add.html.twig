@@ -1,0 +1,172 @@
+{% extends 'baseadmin.html.twig' %}
+    {% block style %}
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+  integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+  crossorigin=""
+/>
+    <style>
+
+#map {
+  height: 300px;
+  width: 80%;
+  display: block;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.marker-position {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  padding: 10px;
+  font-weight: 700;
+  background-color: #fff;
+}
+    
+    </style>
+
+    {% endblock %}
+{% block stylesheets %}
+{{ parent() }}
+
+{% endblock %}
+
+
+{% block title  %}Les evenements {% endblock %}
+
+{% block body %}
+<div style="position: absolute; margin-left: 400px; margin-top: 100px; width: 60%">
+	<!-- Form Start -->
+	<div class="col-sm-120 col-xl-60">
+		<div class="bg-light rounded h-100 p-4">
+			<h6 class="mb-4">Add Event</h6>
+			{{form_start(formEvent,{'attr': {'novalidate': 'novalidate'}}
+			)}}
+			<div class="row mb-3">
+				<label class="col-sm-2 col-form-label">Titre</label>
+				<div class="col-sm-10">
+					{{ form_widget(formEvent.titre,{ 'attr': {'class': 'form-control'} }) }}
+					{{ form_errors(formEvent.titre) }}
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-2 col-form-label">Description</label>
+				<div class="col-sm-10">
+					{{ form_widget(formEvent.description,{ 'attr': {'class': 'form-control'} }) }}
+					{{ form_errors(formEvent.description) }}
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-2 col-form-label">Date</label>
+				<div class="col-sm-10">
+					{{ form_widget(formEvent.date,{ 'attr': {'class': 'form-control'} }) }}
+					{{ form_errors(formEvent.date) }}
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-2 col-form-label">Image</label>
+				<div class="col-sm-10">
+					{{ form_widget(formEvent.img,{ 'attr': {'class': 'form-control'} }) }}
+					{{ form_errors(formEvent.img) }}
+				</div>
+			</div>
+			<div class="row mb-3">
+				<label class="col-sm-2 col-form-label">Lieu</label>
+				<div class="col-sm-10">
+					{{ form_widget(formEvent.lieu,{ 'attr': {'class': 'form-control'} }) }}
+					{{ form_errors(formEvent.lieu) }}
+				</div>
+			</div>
+
+			<div style="padding: 7px;">
+			{# <div class="row mb-3"> #}
+				{{ form_widget(formEvent.pos1 , {'attr': {'class': 'pos'}}) }}
+			</div>
+			<div style="padding: 7px;">
+			{# <div class="row mb-3"> #}
+				{{ form_widget(formEvent.pos2 , {'attr': {'class': 'pos'}}) }}
+			</div>
+<div class="marker-position" style="display: none;">
+  click on the map, move the marker, click on the marker
+</div>
+<div id="map"></div>
+<script
+  src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+  integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+  crossorigin=""
+></script>
+<script>
+  const pos1 = document.getElementById("event_pos1");
+  const pos2 = document.getElementById("event_pos2");
+
+  const map = L.map("map").setView([36.70365959719456, 10.17818283871446], 7);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  if (pos1.value != "") {
+    L.marker([pos1.value, pos2.value])
+      .addTo(map)
+      .bindPopup("Bienvenue")
+      .openPopup();
+  }
+  // add marker on click
+  map.on("click", addMarker);
+
+  function addMarker(e) {
+    map.eachLayer((layer) => {
+      if (layer["_latlng"] != undefined) layer.remove();
+    });
+    // Add marker to map at click location
+    const markerPlace = document.querySelector(".marker-position");
+    // markerPlace.textContent = `new marker: ${e.latlng.lat}, ${e.latlng.lng}`;
+
+    const marker = new L.marker(e.latlng, { draggable: true }).addTo(map);
+
+    // event remove marker
+    marker.on("popupopen", removeMarker);
+
+    // event draged marker
+    marker.on("dragend", dragedMaker);
+    pos1.value = e.latlng.lat;
+    pos2.value = e.latlng.lng;
+  }
+
+  const buttonRemove = '<button type="button" class="remove"></button>';
+
+  // remove marker
+  function removeMarker() {
+    const marker = this;
+    const btn = document.querySelector(".remove");
+    btn.addEventListener("click", function () {
+      const markerPlace = document.querySelector(".marker-position");
+      markerPlace.textContent = "goodbye marker";
+      map.removeLayer(marker);
+    });
+  }
+
+  // draged
+  function dragedMaker() {
+    const markerPlace = document.querySelector(".marker-position");
+    markerPlace.textContent = `change position: ${this.getLatLng().lat}, ${
+      this.getLatLng().lng
+    }`;
+  }
+</script>
+			<br>
+			<a href="{{path('app_events')}}" class="mt-2">Liste des events</a>
+			<br>
+			<br>
+			<div style="text-align: right;">
+				{{ form_widget(formEvent.submit,{ 'attr': {'class': 'btn btn-primary'} }) }}
+			</div>
+			{{form_end(formEvent)}}
+		</div>
+	</div>
+	<!-- Form End -->
+    </div>
+{% endblock %}

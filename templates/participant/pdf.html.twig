@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table class="table mb-0">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Participant</th>
+            <th>Event</th>
+            <th>Numero</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in participant %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.getUser}}</td>
+            <td>{{ i.getEvent }}</td>
+            <td>{{i.dateParticipation|date("m/d/Y") }}</td>
+            
+        </tr>
+
+        {% endfor %}
+        </tbody>
+
+</table>
+</div>

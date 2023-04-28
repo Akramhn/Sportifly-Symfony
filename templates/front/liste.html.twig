@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+    {% block style %}
+    {{parent()}}
+    {% endblock %}
+
+    {% block stylesheets %}
+    {{parent()}}
+    {% endblock %}
+
+
+{% block title  %}Les evenements {% endblock %}
+
+{% block middle %}
+<div style="position: absolute; margin-left: 400px; margin-top: 100px">
+
+  
+    <h1>List Events</h1>
+
+    <a class="btn btn-primary" href="{{path('tri')}}">Tri par date</a>
+    
+
+    <div class="event-row">
+    {% for event in tabEvents %}
+  <div class="event-column">
+    <div class="event-card">
+          <img
+            src="{{ asset('uploads/event/' ~ event.img) }}"
+            alt={{event.titre}}
+            width="150"
+            height="350"
+          />
+  <div class="event-card-container">
+    <h4><b>{{ event.titre }}</b></h4>
+    <h4>{{ event.lieu }}</h4>
+    <p>{{event.date|date("m/d/Y") }}</p>
+            <a href="{{ path('app_participer',{'id':event.id}) }}" style="margin: auto!important; display: block; width: 100%;" class="btn btn-primary" tabindex="-1" role="button" >Participer</a>
+  </div>
+</div>
+
+</div>
+    {% endfor %}
+    
+    </div>
+    
+    {% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+ {% block stylesheets %}
+     <!-- ICONSCOUT CDN -->
+     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+     <!-- STYLESHEET -->
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/form.css') }}">
+
+
+ {% endblock %}
+
+
+{% block middle %}
+    <div class="middle">
+        <a href="{{path('app_listoffrefront')}}" class="btn btn-primary" tabindex="-1" role="button">Back</a>
+
+        <!-- multistep form -->
+        <div id="msform">
+            <!-- progressbar -->
+
+            <!-- fieldsets -->
+            {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+            <fieldset>
+                <h2 class="fs-title">Add Offre</h2>
+
+                <div class="form-group">
+                    {{ form_widget(form.description) }}
+                    {{ form_errors(form.description) }}
+                </div>
+                <div class="form-group">
+
+                    {{ form_widget(form.prix) }}
+                    {{ form_errors(form.prix) }}
+                </div>
+                <div class="form-group">
+
+                    {{ form_widget(form.nbplace) }}
+                    {{ form_errors(form.nbplace) }}
+                </div>
+                <br>
+                <div class="form-group">
+
+                    {{ form_widget(form.affiche) }}
+                    {{ form_errors(form.affiche) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.id_category,'sport') }}
+
+                    {{ form_widget(form.id_category) }}
+
+                </div>
+
+                <br>
+
+                <button class="btn btn-primary">
+                    Ajouter Offre
+                </button>
+                {{ form_end(form) }}
+            </fieldset>
+
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

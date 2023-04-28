@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+ {% block stylesheets %}
+     <!-- ICONSCOUT CDN -->
+     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+     <!-- STYLESHEET -->
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/form.css') }}">
+
+
+ {% endblock %}
+
+
+{% block middle %}
+    <div class="middle">
+        <a href="{{path('app_activiter')}}" class="btn btn-primary" tabindex="-1" role="button">Back</a>
+
+
+        <!-- multistep form -->
+        <div id="msform">
+            <!-- progressbar -->
+
+            <!-- fieldsets -->
+            <fieldset>
+                <h2 class="fs-title">Add Activité</h2>
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_row(form.titre) }}
+                </div>
+                <div class="form-group">
+
+                    {{ form_row(form.date_debut) }}
+                </div>
+                <br>
+                <div class="form-group">
+
+                    {{ form_row(form.date_fin) }}
+                </div>
+                <br>
+
+                <div class="form-group">
+
+                    {{ form_row(form.ref_categ) }}
+                </div>
+                <br>
+
+                <button class="btn btn-primary">
+                    Ajouter Activité
+                </button>
+                {{ form_end(form) }}
+            </fieldset>
+
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

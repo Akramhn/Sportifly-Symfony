@@ -1,0 +1,9 @@
+{% extends 'base.html.twig'%}
+{%block middle %}
+    <div class="middle">
+        <h4>update commentaire actualite</h4>
+        {{ form_start(form,{'atte':{'novalidate':'novalidate'}}) }}
+        {{form_row(form.contenu)}}
+        {{form_end(form)}}
+    </div>
+{%endblock%}

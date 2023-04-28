@@ -1,0 +1,31 @@
+{% extends 'Loginform.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register coach</h1>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 order-md-2">
+                <img src="images/undraw_hiring_re_yk5n.svg" alt="Image" class="img-fluid">
+            </div>
+    {{ form_start( RegisterCoachForm,{'attr': {'class':'form-horizontal','novalidate':'novalidate'}} ) }}
+    {{ form_row(RegisterCoachForm.email) }}
+     {{ form_row(RegisterCoachForm.lastname) }}
+    {{ form_row(RegisterCoachForm.diplome) }}
+    {{ form_row(RegisterCoachForm.image) }}
+    {{ form_row(RegisterCoachForm.experience) }}
+    {{ form_row(RegisterCoachForm.plainPassword) }}
+
+    <button type="submit" class="href={{ path('app_login') }}">Register</button>
+    {{ form_end(RegisterCoachForm) }}
+            <div id="google_translate_element"></div>
+            <script type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                }
+            </script>
+
+            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+{% endblock %}

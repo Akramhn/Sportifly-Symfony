@@ -1,0 +1,140 @@
+{% extends 'baseuser.html.twig' %}
+
+{% block title %} Mes Offres {% endblock %}
+
+{% block middle %}
+
+    <div class="middle">
+        <!------------------- STORIES -------------------->
+        <div class="stories">
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-20.jpg')}}">
+                </div>
+                <p class="name">Your Story</p>
+            </div>
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-9.jpg')}}">
+                </div>
+                <p class="name">Lilla James </p>
+            </div>
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-10.jpg')}}">
+                </div>
+                <p class="name">Winnie Hale</p>
+            </div>
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-11.jpg')}}">
+                </div>
+                <p class="name">Daniel Bale</p>
+            </div>
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-12.jpg')}}">
+                </div>
+                <p class="name">Jane Doe</p>
+            </div>
+            <div class="story">
+                <div class="profile-picture">
+                    <img src="{{ asset('frontoffice/images/profile-8.jpg')}}">
+                </div>
+                <p class="name">Tina White</p>
+            </div>
+        </div>
+
+        {% for i in listOffre%}
+            <div class="feeds">
+                <div class="feed">
+                    <div class="head">
+                        <div class="user">
+                            <div class="profile-picture">
+                                <img src="{{ asset('frontoffice/images/messi.jpg') }}" alt="">
+                            </div>
+                            <div class="info">
+
+                                <h3>Lionel Messi</h3>
+                                <small>Tounes, 15 minute Ago</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="text">
+                        <p>{{ i.description }}</p>
+                    </div>
+                    <div class="photo">
+                        <img src="{{ asset('uploads/offre/'~ i.affiche) }}" alt="">
+                    </div>
+                    <div class="action-button">
+                        <div>
+                            {% if i.nbplace == 0 %}
+                                <button class="btn btn-primary" disabled>Reserver</button>
+{% else %}
+                            <a href="{{ path('app_reserverOffrefront',{'id':i.id}) }}"  class="btn btn-primary" tabindex="-1" role="button" >Reserver</a>
+    {% endif %}
+                        </div>
+
+                        <div class="rating" data-offer-id="{{ i.id }}">
+                            <input type="hidden" id="rating-input" name="rating" value="{{ i.id }}" />
+                            {% for i in 1..5 %}
+                                <i class="far fa-star rating-star"></i>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+{% block right %} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, nostrum! {% endblock %}
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Add event listeners for the rating stars
+            $('.rating-star').on('click', function() {
+                var rating = $(this).index() + 1;
+                var offerId = $(this).closest('.rating').data('offer-id');
+                $('#rating-input').val(rating);
+                $(this).removeClass('far').addClass('fas');
+                $(this).prevAll().removeClass('far').addClass('fas');
+                $(this).nextAll().removeClass('fas').addClass('far');
+
+                // Send AJAX request to save the rating
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('rate_offer') }}",
+
+                    data: {'rating': rating, 'offerId': offerId},
+                    success: function(data) {
+                        // Add the 'fas' class to the selected stars
+                        $('.rating-star').removeClass('fas');
+                        $('.rating-star:lt(' + rating + ')').addClass('fas');
+                        console.log(offerId);
+                    },
+
+                    error: function(data) {
+                        console.log('Error while saving rating.');
+                    }
+                });
+            });
+
+            $('.rating-star').on('mouseover', function() {
+                $(this).removeClass('far').addClass('fas');
+                $(this).prevAll().removeClass('far').addClass('fas');
+            });
+
+            $('.rating-star').on('mouseout', function() {
+                $(this).removeClass('fas').addClass('far');
+                $(this).prevAll().removeClass('fas').addClass('far');
+            });
+        });
+    </script>
+{% endblock %}
+

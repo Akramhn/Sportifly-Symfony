@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title  %} Liste Activités {% endblock %}
+ {% block stylesheets %}
+
+
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/table.css') }}">
+
+ {% endblock %}
+{% block middle %}
+    <div class="middle">
+
+        <h4>List activités</h4>
+        <a href="{{path('app_listoffrefront')}}" class="btn btn-primary" tabindex="-1" role="button">Back</a>
+
+
+
+
+        <table class="styled-table">
+            <thead>
+            <tr>
+
+                <td>offre_description</td>
+                <td>id_res</td>
+                <td>Date</td>
+                <td><b>Delet</b></td>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+
+                {% for i in 0..offre|length-1 %}
+                {% if reservation[i] is defined%}
+            <tr>
+                <td> {{ offre[i].description }} </td>
+
+                <td> {{ reservation[i].id }}</td>
+
+                <td>{{ reservation[i].Date ? reservation[i].Date|date('Y-m-d') : '' }}</td>
+                <td>  <a  href="{{ path('app_removeFront',{'id':reservation[i].id}) }}"class="btn btn-primary" tabindex="-1" role="button" >delete</a> </td>
+            </tr>
+
+            {% endif %}
+            {% endfor %}
+            </tr>
+
+            <!-- and so on... -->
+            </tbody>
+
+        </table>
+
+    </div>
+{% endblock %}

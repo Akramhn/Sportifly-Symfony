@@ -1,0 +1,68 @@
+<style>
+    .search-bar1 {
+        display: inline-block;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        color: #333;
+        width: 300px;
+        background-color: #fff;
+    }
+
+    .search-bar1:focus {
+        outline: none;
+        border: 1px solid #007bff;
+        box-shadow: 0 0 5px #007bff;
+    }
+</style>
+
+<div class="search-bar1">
+    <i class="uil uil-search"></i>
+    <input type="search" id="myInput" class="form-control pl-6" placeholder="Search for offers">
+</div>
+
+<div class="feeds">
+    {% for i in listOffre %}
+        <div class="feed">
+            <div class="head">
+                <div class="user">
+                    <div class="profile-picture">
+                        <img src="{{ asset(app.user.image) }}" alt="">
+                    </div>
+                    <div class="info">
+                        <h3>{{ app.user.lastname }}</h3>
+                        <small>{{ i.date.format('Y-m-d H:i:s') }}</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text">
+                <p>{{ i.description }}</p>
+            </div>
+            <div class="photo">
+                <img src="{{ asset('uploads/offre/'~ i.affiche) }}" alt="">
+            </div>
+            <div class="action-button">
+                <div>
+                    <a href="{{ path('offre_modify',{'id':i.id}) }}"  class="btn btn-primary" tabindex="-1" role="button" >Update</a>
+                </div>
+                <div class="bookmark">
+                    <button class="btn1"><a href="{{ path('app_removeOffre',{'id':i.id}) }}" class="btn btn-primary" tabindex="-1" role="button" >delete</a></button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $(".feed").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        })
+    });
+</script>

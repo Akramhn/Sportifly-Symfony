@@ -1,0 +1,104 @@
+<table class="table table-striped" border="1" style="background-color: #b0f2b6; color: #000000;">
+    <style>
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .table-title {
+            background-color:#b0f2b6;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .table-subtitle {
+            background-color: #b0f2b6;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .table-data {
+            font-size: 14px;
+        }
+
+        .table-data td {
+            vertical-align: middle;
+        }
+
+        .table-data td:first-child {
+            font-weight: bold;
+            text-transform: uppercase;
+            color: black;
+        }
+
+        .table-data td:last-child {
+            text-align: center;
+        }
+    </style>
+
+    <div style="background-color: #f5f5f5; padding: 30px;">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <h1 style="margin-bottom: 50px;">Utilisateur </h1>
+
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="2" class="table-title">Détails sur l'utilisateur choisi</th>
+                </tr>
+                </thead>
+                <tbody class="table-data">
+                <tr>
+                    <td>email</td>
+                    <td>{{ users[0].email ?? '' }}</td>
+                </tr>
+                <tr>
+                    <td>lastname</td>
+                    <td>{{ users[0].lastname ?? '' }}</td>
+                </tr>
+                <tr>
+                    <td>roles</td>
+                    <td>{{ users[0].roles ? users[0].roles|json_encode : '' }}</td>
+                </tr>
+                <tr>
+                    <td>diplome </td>
+                    <td>{{ users[0].diplome ?? '' }}</td>
+                </tr>
+                <tr>
+                    <td>experience </td>
+                    <td>{{ users[0].experience ?? '' }} ans</td>
+                </tr>
+                <tr>
+                    <td>image</td>
+                    <td>{{ users[0].image ?? '' }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <p class="table-subtitle"> <strong>Sportifly ! </strong></p>
+        </div>
+    </div>

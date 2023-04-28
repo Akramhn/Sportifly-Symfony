@@ -1,0 +1,35 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block title %}Reclamations{% endblock %}
+
+{% block body %}
+    <h1>Reclamations</h1>
+<div style="position: absolute; margin-left:500px; margin-top: 100px">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reclamation.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ reclamation.type }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ reclamation.description }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ reclamation.etat ? 'Yes' : 'No' }}</td>
+                <th>date</th>
+                <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('reclamationtraite',{'id': reclamation.id}) }}"class="btn btn-primary" tabindex="-1" role="button">Repondre</a>
+    {#href="{{ path('PDF_Reclamation') }}" class="btn btn-primary" tabindex="-1" role="button">PDF</a>  #}
+
+    {{ include('reclamations/_delete_form.html.twig') }}
+{% endblock %}

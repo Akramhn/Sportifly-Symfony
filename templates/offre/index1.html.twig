@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mes Offres {% endblock %}
+
+{% block middle %}
+
+
+       <div class="middle">
+           <!------------------- STORIES -------------------->
+           <div class="stories">
+               <div class="story">
+                   <div class="profile-picture">
+                       <img src="{{ asset('frontoffice/images/profile-20.jpg')}}">
+                   </div>
+                   <p class="name">Your Story</p>
+               </div>
+               <div class="story">
+                   <div class="profile-picture">
+                       <img src="{{ asset('frontoffice/images/profile-9.jpg')}}">
+                   </div>
+                   <p class="name">Lilla James </p>
+               </div>
+               <div class="story">
+                   <div class="profile-picture">
+                       <img src="{{ asset('frontoffice/images/profile-10.jpg')}}">
+                   </div>
+                   <p class="name">Winnie Hale</p>
+               </div>
+               <div class="story">
+                   <div class="profile-picture">
+                       <img src="{{ asset('frontoffice/images/profile-11.jpg')}}">
+                   </div>
+                   <p class="name">Daniel Bale</p>
+               </div>
+               <div class="story">
+                   <div class="profile-picture">
+                       <img src="{{ asset('frontoffice/images/profile-12.jpg')}}">
+                   </div>
+                   <p class="name">Jane Doe</p>
+               </div>
+               <div class="story">
+                   <div class="profile-picture">
+                       <img src="{{ asset('frontoffice/images/profile-8.jpg')}}">
+                   </div>
+                   <p class="name">Tina White</p>
+               </div>
+           </div>
+
+           <br>
+           <br>
+           <!------------------- END OF STORIES -------------------->
+<!--------------- FEEDS ----------->
+           <div class="feeds" id="content">
+
+           {% include "offre/_feed.html.twig" %}
+           </div>
+      </div>
+
+{% endblock %}
+{% block right %} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, nostrum! {% endblock %}
+ {% block javascripts %}
+     <script src="{{ asset('frontoffice/js/filter2.js') }}"></script>
+ {% endblock %}

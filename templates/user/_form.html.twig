@@ -1,0 +1,55 @@
+
+
+
+
+
+
+{% block stylesheets %}
+    <!-- ICONSCOUT CDN -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontoffice/css/form.css') }}">
+
+
+{% endblock %}
+
+
+{% block middle %}
+    <div class="middle">
+        <a href="{{path('app_listoffrefront')}}" class="btn btn-primary" tabindex="-1" role="button">Back</a>
+
+        <!-- multistep form -->
+        <div id="msform">
+            <!-- progressbar -->
+
+            <!-- fieldsets -->
+            {{ form_start(form,{'attr': {'class':'form-horizontal','novalidate':'novalidate'}} ) }}
+            <fieldset>
+                <h2 class="fs-title">Modifier Profil</h2>
+
+                <div class="form-group">
+                    {{ form_widget(form) }}
+
+
+                </div>
+
+                <br>
+<div class="form-group">
+    <button class="btn btn-primary">
+        {{ button_label|default('Save') }}
+    </button>
+</div>
+
+                {{ form_end(form) }}
+            </fieldset>
+
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+

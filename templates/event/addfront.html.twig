@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+ {% block stylesheets %}
+     <!-- ICONSCOUT CDN -->
+     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+     <!-- STYLESHEET -->
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
+     <link rel="stylesheet" href="{{ asset('frontoffice/css/form.css') }}">
+
+
+ {% endblock %}
+
+
+{% block middle %}
+    <div class="middle">
+        <a href="{{path('app_listoffrefront')}}" class="btn btn-primary" tabindex="-1" role="button">Back</a>
+
+        <!-- multistep form -->
+        <div id="msform">
+            <!-- progressbar -->
+
+            <!-- fieldsets -->
+            {{ form_start(formEvent,{'attr': {'novalidate': 'novalidate'}} ) }}
+            <fieldset>
+                <h2 class="fs-title">Add event</h2>
+
+                <div class="form-group">
+                    {{ form_widget(formEvent.titre,{ 'attr': {'class': 'form-control'} }) }}
+                    {{ form_errors(formEvent.titre) }}
+                </div>
+                <div class="form-group">
+
+                    {{ form_widget(formEvent.description,{ 'attr': {'class': 'form-control'} }) }}
+                    {{ form_errors(formEvent.description) }}
+                </div>
+                <div class="form-group">
+
+                    {{ form_widget(formEvent.date,{ 'attr': {'class': 'form-control'} }) }}
+                    {{ form_errors(formEvent.date) }}
+                </div>
+                <br>
+                <div class="form-group">
+
+                    {{ form_widget(formEvent.img,{ 'attr': {'class': 'form-control'} }) }}
+                    {{ form_errors(formEvent.img) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_widget(formEvent.lieu,{ 'attr': {'class': 'form-control'} }) }}
+                    {{ form_errors(formEvent.lieu) }}
+
+                </div>
+
+                <br>
+
+                {{ form_end(formEvent) }}
+            </fieldset>
+
+
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
