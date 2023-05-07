@@ -1,4 +1,3 @@
-
 <!--
 ////////////////////////////////////////////////////////////////
 
@@ -13,248 +12,302 @@ Facebook: https://www.facebook.com/FreeDashTemplate.co
 Twitter:  https://twitter.com/Free_Templateco
 RSS Feed: https://feeds.feedburner.com/Free-templateco
 
-////////////////////////////////////////////////////////////////
+///////////////////////////////////0/////////////////////////////
 -->
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title>Stamina &mdash; Free Website Template by Free-Template.co</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<head>
+		<title>Stamina &mdash; Free Website Template by Free-Template.co</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="Free-Template.co" />
+		<meta name="description" content=""/>
+		<meta name="keywords" content=""/>
+		<meta name="author" content="Free-Template.co"/>
 
-    <link rel="shortcut icon" href="ftco-32x32.png">
+		<link rel="shortcut icon" href="ftco-32x32.png">
 
-    {% block stylesheets %}
-        <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
-        <link rel="stylesheet" href="fonts/icomoon/style.css" {{ asset('HomePage/css/style.css') }}>
+		{% block stylesheets %}
+			<link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+			<link rel="stylesheet" href="fonts/icomoon/style.css" {{ asset('HomePage/css/style.css') }}>
 
-        <link rel="stylesheet" href="{{ asset('HomePage/css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{ asset('HomePage/css/jquery-ui.css') }}">
-        <link rel="stylesheet" href="{{ asset('HomePage/css/owl.carousel.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('HomePage/css/owl.theme.default.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('HomePage/css/owl.theme.default.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('HomePage/css/bootstrap.min.css')}}">
+			<link rel="stylesheet" href="{{ asset('HomePage/css/jquery-ui.css') }}">
+			<link rel="stylesheet" href="{{ asset('HomePage/css/owl.carousel.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('HomePage/css/owl.theme.default.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('HomePage/css/owl.theme.default.min.css') }}">
 
-        <link rel="stylesheet" href="{{ asset('HomePage/css/jquery.fancybox.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('HomePage/css/jquery.fancybox.min.css') }}">
 
-        <link rel="stylesheet" href="{{ asset('HomePage/css/bootstrap-datepicker.css') }}">
+			<link rel="stylesheet" href="{{ asset('HomePage/css/bootstrap-datepicker.css') }}">
 
-        <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css') }}">
+			<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css') }}">
 
-        <link rel="stylesheet" href="{{ asset('HomePage/css/aos.css') }}">
-        <link href="{{ asset('HomePage/css/jquery.mb.YTPlayer.min.css')}}" media="all" rel="stylesheet" type="text/css">
+			<link rel="stylesheet" href="{{ asset('HomePage/css/aos.css') }}">
+			<link href="{{ asset('HomePage/css/jquery.mb.YTPlayer.min.css')}}" media="all" rel="stylesheet" type="text/css">
 
-        <link rel="stylesheet" href="{{ asset('HomePage/css/style.css') }}">
+			<link rel="stylesheet" href="{{ asset('HomePage/css/style.css') }}">
 
-    {% endblock %}
-
-
-
-</head>
-
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
-<div class="site-wrap">
-
-    <div class="site-mobile-menu site-navbar-target">
-        <div class="site-mobile-menu-header">
-            <div class="site-mobile-menu-close mt-3">
-                <span class="icon-close2 js-menu-toggle"></span>
-            </div>
-        </div>
-        <div class="site-mobile-menu-body"></div>
-    </div>
+		{% endblock %}
 
 
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+	</head>
 
-        <div class="container-fluid">
-            <div class="d-flex align-items-center">
-                <div class="site-logo"><a href="index.html">Stamina<span>.</span> </a></div>
-                <div class="ml-auto">
-                    <nav class="site-navigation position-relative text-right" role="navigation">
-                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                            <li><a href="index.html#home-section" class="nav-link">Home</a></li>
-                            <li><a href="index.html#classes-section" class="nav-link active">Classes</a></li>
-                            <li><a href="index.html#schedule-section" class="nav-link">Schedule</a></li>
-                            <li><a href="index.html#trainer-section" class="nav-link">Trainer</a></li>
-                            <li><a href="index.html#services-section" class="nav-link">Services</a></li>
-                            <li><a href="index.html#contact-section" class="nav-link">Contact</a></li>
-                        </ul>
-                    </nav>
-                    <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle float-right"><span
-                                class="icon-menu h3"></span></a>
-                </div>
+	<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
-            </div>
-        </div>
+		<div class="site-wrap">
 
-    </header>
-
-    <div class="bgimg" style="background-image: url('{{ asset('HomePage/images/bg_3.jpg') }}');" data-stellar-background-ratio="0.5">
-
-        <div class="container">
-            <div class="row align-items-center justify-content-center text-center">
-                <div class="col-md-7">
-                    <h2 class="">{{ actualite.titre }}</h2>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="site-section">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-lg-12">
-                    <img src="{{ asset('uploads/images/'~ actualite.image ) }}" alt="Free webssite template by Free-Template.co" class="img-fluid">
-                </div>
-            </div>
-            <div class="row mb-5">
-
-                <div class="col-lg-6">
-                    <p>{{ actualite.description }}</p>
-                    <div class="ul-check list-unstyled success">
-                        <li>{{ actualite.date|date("F jS \\a\\t g:ia") }}</li>
-                        <li>{{ actualite.categorie }}</li>
-
-                    </div>
-                    {% for commentaire in actualite.commentaireActs %}
-                        <div class="commentaire">
-
-                            <span class="date">{{ commentaire.date | date("d/m/Y H:i") }}</span>
-                            <p>{{ commentaire.contenu }}</p>
-
-                            {% if (app.user.getId())== commentaire.iduser.id %}
-                                <div class="action-button">
-                                    <div>
-                                        <button class="btn1"><a  href="{{ path('app_updateCom',{'id':commentaire.id,'id2':commentaire.idactualite}) }}"class="btn btn-primary" tabindex="-1" role="button" >Update</a></button>
-
-                                    </div>
-                                    <div class="bookmark">
-                                        <button class="btn1"><a  href="{{ path('app_supprimerCom',{'id':commentaire.id,'id2':commentaire.idactualite}) }}"class="btn btn-primary" tabindex="-1" role="button" >delete</a></button>
-
-                                    </div>
-                                </div>
-                            {%endif%}
-
-                            {# <a href="{{ path('app_updateCom', {'id': commentaire.id}) }}"><i class="fas fa-edit"></i> Modifier</a>
-                    <a href="{{ path('app_supprimerCom', {'id': commentaire.id}) }}"><i class="fas fa-trash"></i> Supprimer</a>#}
-                        </div>
-                    {% endfor %}
-
-                </div>
-                {%if (app.user)%}
-                    <h4>Ajouter commentaire</h4>
-                    {{ form_start(form,{'atte':{'novalidate':'novalidate'}}) }}
-                    {{form_row(form.contenu)}}
-                    {{form_end(form)}}
-                {%else%}
-                    <buttton style="background: green; border-radius:18rem;" ><a href="{{asset('login')}}">sign in</a></buttton>
-                {%endif%}
-
-            </div>
-            <div class="row">
-                <div class="col-12">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="schedule-wrap2 clearfix">
-        <div class="d-md-flex align-items-center">
-            <div class="hours mr-md-4 mb-4 mb-lg-0">
-                <strong class="d-block">Hours</strong>
-                Opening: 7:30am &mdash;
-                Closing: 9:00pm
-            </div>
-            <div class="cta ml-auto">
-                <a href="#" class="d-flex d-md-flex align-items-center btn">
-                    <span class="mx-auto"> <span>Contact us</span> <span class="arrow icon-keyboard_arrow_right"></span></span>
-                </a>
-            </div>
-        </div>
-    </div>
+			<div class="site-mobile-menu site-navbar-target">
+				<div class="site-mobile-menu-header">
+					<div class="site-mobile-menu-close mt-3">
+						<span class="icon-close2 js-menu-toggle"></span>
+					</div>
+				</div>
+				<div class="site-mobile-menu-body"></div>
+			</div>
 
 
-    <footer class="footer-section bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3 class="text-dark">About Stamina</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-                        blind texts.</p>
-                </div>
+			<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
 
-                <div class="col-md-3 ml-auto">
-                    <h3 class="text-dark">Links</h3>
-                    <ul class="list-unstyled footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Classes</a></li>
-                        <li><a href="#">Schedule</a></li>
-                        <li><a href="#">Trainer</a></li>
-                    </ul>
-                </div>
+				<div class="container-fluid">
+					<div class="d-flex align-items-center">
+						<div class="site-logo">
+							<a href="index.html">Sportifly<span>.</span>
+							</a>
+						</div>
+						<div class="ml-auto">
+							<nav class="site-navigation position-relative text-right" role="navigation">
+								<ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+									<li>
+										<a href="index.html#home-section" class="nav-link">Home</a>
+									</li>
+									<li>
+										<a href="index.html#classes-section" class="nav-link active">Classes</a>
+									</li>
+									<li>
+										<a href="index.html#schedule-section" class="nav-link">Schedule</a>
+									</li>
+									<li>
+										<a href="index.html#trainer-section" class="nav-link">Trainer</a>
+									</li>
+									<li>
+										<a href="index.html#services-section" class="nav-link">Services</a>
+									</li>
+									<li>
+										<a href="index.html#contact-section" class="nav-link">Contact</a>
+									</li>
+								</ul>
+							</nav>
+							<a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle float-right">
+								<span class="icon-menu h3"></span>
+							</a>
+						</div>
 
-                <div class="col-md-4">
-                    <h3 class="text-dark">Subscribe</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
-                    </p>
-                    <form action="#">
-                        <div class="d-flex mb-5">
-                            <input type="text" class="form-control rounded-0" placeholder="Email">
-                            <input type="submit" class="btn btn-primary rounded-0" value="Subscribe">
-                        </div>
-                    </form>
-                </div>
+					</div>
+				</div>
 
-            </div>
+			</header>
 
-            <div class="row pt-5 mt-5 text-center">
-                <div class="col-md-12">
-                    <div class=" pt-5">
-                        <!-- Link back to Free-Template.co can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p class="copyright"><small>&copy;
-                                <script>document.write(new Date().getFullYear());</script> Stamina. All Rights Reserved. Design by
-                                <a href="https://free-template.co" target="_blank">Free-Template.co</a></small></p>
-                    </div>
-                </div>
+			<div class="bgimg" style="background-image: url('{{ asset('uploads/images/'~ actualite.image ) }}');" data-stellar-background-ratio="0.5">
 
-            </div>
-        </div>
-    </footer>
+				<div class="container">
+					<div class="row align-items-center justify-content-center text-center">
+						<div class="col-md-7">
+							<h2 class="">{{ actualite.titre }}</h2>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="site-section">
+				<div class="container">
+					<div class="row mb-5">
+						<div class="col-lg-12">
+							<img src="{{ asset('uploads/images/'~ actualite.image ) }}" alt="Free webssite template by Free-Template.co" class="img-fluid">
+						</div>
+					</div>
+					<div class="row mb-5">
+
+						<div class="col-lg-6 mx-auto">
+							<p style="color:black; font-size:20px;">{{ actualite.description }}</p>
+							<div class="ul-check list-unstyled success">
+								<div style="position: relative;">
+									<img src="{{ asset('uploads/images/time.png' ) }}" alt="User Image" style="position: absolute; left: -50px; top: -5px; width: 40px; height: 40px; ">
+									<p style="color:black">{{ actualite.date|date("F jS \\a\\t g:ia") }}</p>
+
+								</div>
+								<div style="position: relative;">
+									<img src="{{ asset('uploads/images/cat.jpg' ) }}" alt="User Image" style="position: absolute; left: -50px; top: -5px; width: 40px; height: 40px; ">
+									<p>{{ actualite.categorie }}</p>
+
+								</div>
+
+							</div>
+							<p style="color:black; font-size:2rem">Comments:</p>
+							{% for commentaire in actualite.commentaireActs %}
+
+								<div class="commentaire">
+
+									<span class="date">{{ commentaire.date | date("d/m/Y H:i") }}</span>
+									<div style="position: relative;">
+
+										<br>
+										<img src="{{ asset('uploads/images/'~ actualite.image ) }}" alt="User Image" style="position: absolute; left: -50px; top: 35px; width: 40px; height: 40px; border-radius: 50%;">
+										<input type="text" class="form-control" value="{{ commentaire.contenu }}" readonly style="border-radius: 10px; background-color: #EDEADE; border-color: white; padding-left: 60px;">
+									</div>
+									{%if app.user  %}
+										{% if (app.user.getId())== commentaire.iduser.id %}
+											<div class=" action-button">
+												<div>
+													<button class="btn1">
+														<a href="{{ path('app_updateCom',{'id':commentaire.id,'id2':commentaire.idactualite}) }}" class="btn btn-primary" tabindex="-1" role="button">Update</a>
+													</button>
+
+												</div>
+												<div class="bookmark">
+													<button class="btn1">
+														<a href="{{ path('app_supprimerCom',{'id':commentaire.id,'id2':commentaire.idactualite}) }}" class="btn btn-primary" tabindex="-1" role="button">delete</a>
+													</button>
+
+												</div>
+											</div>
+											{%endif%}
+											{%endif%}
+
+											{# <a href="{{ path('app_updateCom', {'id': commentaire.id}) }}"><i class="fas fa-edit"></i> Modifier</a>
+																																																																																																																																														                    <a href="{{ path('app_supprimerCom', {'id': commentaire.id}) }}"><i class="fas fa-trash"></i> Supprimer</a>#}
+										</div>
+									{% endfor %}
+
+								</div>
+								{%if (app.user)%}
+									<h4>Ajouter commentaire</h4>
+									{{ form_start(form,{'atte':{'novalidate':'novalidate'}}) }}
+									{{form_row(form.contenu)}}
+									{{form_end(form)}}
+									{%else%}
+									<button style="margin-top:33% ;background: green; height:2.5rem; width:20rem; border-radius: 10px; border: none;">
+										<a href="{{ asset('login') }}">
+											<p style="text-align:center; color:white; margin-top:2px">sign in to comment</p>
+										</a>
+									</button>
+
+									{%endif%}
+
+								</div>
+								<div class="row">
+									<div class="col-12"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="schedule-wrap2 clearfix">
+							<div class="d-md-flex align-items-center">
+								<div class="hours mr-md-4 mb-4 mb-lg-0">
+									<strong class="d-block">Hours</strong>
+									Opening: 7:30am &mdash;
+																																																																																																																		                Closing: 9:00pm
+								</div>
+								<div class="cta ml-auto">
+									<button href="#" class="d-flex d-md-flex align-items-center btn">
+										<span class="mx-auto">
+											<span>Contact us</span>
+											<span class="arrow icon-keyboard_arrow_right"></span>
+										</span>
+									</button>
+								</div>
+							</div>
+						</div>
 
 
+						<footer class="footer-section bg-light">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-4">
+										<h3 class="text-dark">About Stamina</h3>
+										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+																																																																																																																																														                        blind texts.</p>
+									</div>
 
-</div>
-<!-- .site-wrap -->
-{%block javascripte%}
-    <script src="{{ asset('HomePage/js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('HomePage/js/jquery-migrate-3.0.1.min.js')}}"></script>
-    <script src="{{ asset('HomePage/js/jquery-ui.js')}}"></script>
-    <script src="{{ asset('HomePage/js/popper.min.js')}}"></script>
-    <script src="{{ asset('HomePage/js/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('HomePage/js/owl.carousel.min.js')}}"></script>
-    <script src="{{ asset('HomePage/js/jquery.stellar.min.js')}}"></script>
-    <script src="{{ asset('HomePage/js/jquery.countdown.min.js')}}"></script>
-    <script src="{{ asset('HomePage/js/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{ asset('HomePage/js/jquery.easing.1.3.js')}}"></script>
-    <script src="{{ asset('HomePage/js/aos.js')}}"></script>
-    <script src="{{ asset('HomePage/js/jquery.fancybox.min.js')}}"></script>
-    <script src="{{ asset('HomePage/js/jquery.sticky.js')}}"></script>
-    <script src="{{ asset('HomePage/js/jquery.mb.YTPlayer.min.js')}}"></script>
+									<div class="col-md-3 ml-auto">
+										<h3 class="text-dark">Links</h3>
+										<ul class="list-unstyled footer-links">
+											<li>
+												<a href="#">Home</a>
+											</li>
+											<li>
+												<a href="#">Classes</a>
+											</li>
+											<li>
+												<a href="#">Schedule</a>
+											</li>
+											<li>
+												<a href="#">Trainer</a>
+											</li>
+										</ul>
+									</div>
+
+									<div class="col-md-4">
+										<h3>Subscribe</h3>
+										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
+										</p>
+										<form action="#">
+											<div class="d-flex mb-5">
+												<input type="text" class="form-control rounded-0" placeholder="Email">
+												<input type="submit" style="background-color:#2ef22e;" value="Subscribe">
+											</div>
+										</form>
+									</div>
+
+								</div>
+
+								<div class="row pt-5 mt-5 text-center">
+									<div class="col-md-12">
+										<div
+											class=" pt-5">
+											<!-- Link back to Free-Template.co can't be removed. Template is licensed under CC BY 3.0. -->
+											<p class="copyright">
+												<small>&copy;
+													<script>
+														document.write(new Date().getFullYear());
+													</script>
+													Stamina. All Rights Reserved. Design by
+													<a href="https://free-template.co" target="_blank">Free-Template.co</a>
+												</small>
+											</p>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</footer>
 
 
+					</div>
+					<!-- .site-wrap -->
+					{%block javascripte%}
+					<script src="{{ asset('HomePage/js/jquery-3.3.1.min.js')}}"></script>
+					<script src="{{asset('HomePage/js/jquery-migrate-3.0.1.min.js')}}"></script>
+					<script src="{{ asset('HomePage/js/jquery-ui.js')}}"></script>
+					<script src="{{ asset('HomePage/js/popper.min.js')}}"></script>
+					<script src="{{ asset('HomePage/js/bootstrap.min.js')}}"></script>
+					<script src="{{ asset('HomePage/js/owl.carousel.min.js')}}"></script>
+					<script src="{{ asset('HomePage/js/jquery.stellar.min.js')}}"></script>
+					<script src="{{ asset('HomePage/js/jquery.countdown.min.js')}}"></script>
+					<script src="{{ asset('HomePage/js/bootstrap-datepicker.min.js')}}"></script>
+					<script src="{{ asset('HomePage/js/jquery.easing.1.3.js')}}"></script>
+					<script src="{{ asset('HomePage/js/aos.js')}}"></script>
+					<script src="{{ asset('HomePage/js/jquery.fancybox.min.js')}}"></script>
+					<script src="{{ asset('HomePage/js/jquery.sticky.js')}}"></script>
+					<script src="{{ asset('HomePage/js/jquery.mb.YTPlayer.min.js')}}"></script>
 
 
-    <script src="{{ asset('HomePage/js/main.js')}}"></script>
+					<script src="{{ asset('HomePage/js/main.js')}}"></script>
 
-{%endblock%}
+					{%endblock%}
 
-</body>
+				</body>
 
-</html>
+			</html>

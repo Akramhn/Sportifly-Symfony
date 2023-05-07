@@ -1,172 +1,199 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}SPORTIFLY{% endblock %}</title>
-    {% block stylesheets %}
-        <!-- ICONSCOUT CDN -->
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-        <!-- STYLESHEET -->
-        <link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}SPORTIFLY
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			<!-- ICONSCOUT CDN -->
+			<link
+			rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+			<!-- STYLESHEET -->
+			<link rel="stylesheet" href="{{ asset('frontoffice/css/style.css') }}">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
-    {% endblock %}
+		{% endblock %}
 
 
-</head>
+	</head>
 
-{% block navbar %}
-    <div class="body">
-        <nav>
-            <div class="container">
-                <div class="logo">
-                    <img src="{{ asset('frontoffice/images/logo.png') }}" alt="">
-                </div>
+	{% block navbar %}
+		<div class="body">
+			<nav>
+				<div class="container">
+					<div class="logo">
+						<img src="{{ asset('frontoffice/images/logo.png') }}" alt="">
+					</div>
 
-                <div class="search-bar">
-                    <i class="uil uil-search"></i>
-                    <input type="search" placeholder="Search for Offres">
-                </div>
-                <div class="create">
-                    <a  href="{{path('app_addOffrefront')}}" class="btn btn-primary" for="create-post">Add Offre</a>
-                    <div class="profile-picture">
-                        <img src="{{ asset('frontoffice/images/profil.jpg') }}" alt="">
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
+					<div class="search-bar">
+						<i class="uil uil-search"></i>
+						<input type="search" placeholder="Search for Offres">
+					</div>
+					<div class="create">
+						<div>
+							<a href="{{ path('app_logout') }}">Logout</a>
+						</div>
+						<div class="profile-picture">
+							<img src="{{ asset('frontoffice/images/profil.jpg') }}" alt="">
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
 
-{% endblock %}
-
-
-
-{% block body %}
-    <div class="body">
-        <main>
-            <div class="container">
-                <!--======================== LEFT ==========================-->
-                {%block left%}
-                    <div class="left">
-                        <a  href="{{ path('app_edit_profile', { 'email':app.user.username})}}" class="profile">
-                            <div class="profile-picture">
-                                <img src="{{ asset(app.user.image) }}" alt="">
-                                -+
-
-                            </div>
-                            <div class="handle">
-                                <h4>{{app.user.lastname}}</h4>
-
-                            </div>
-                        </a>
+	{% endblock %}
 
 
-                        <!-------------------- SIDEBAR ------------------------->
+	{% block body %}
+		<div class="body">
+			<main>
+				<div
+					class="container">
+					<!--======================== LEFT ==========================-->
+					{%block left%}
+						<div class="left">
+							<a href="{{ path('app_edit_profile', { 'email':app.user.username})}}" class="profile">
+								<div class="profile-picture">
+									<img src="{{ asset(app.user.image) }}" alt="">
+									-+
 
-                        <div class="sidebar">
-                            <a class="menu-item active" href="{{path('app_Alloffre')}}">
-                                <span><i class="uil uil-gift"></i></span><h3>Mes Offres</h3>
-                            </a>
-                            <a class="menu-item" href="{{path('app_listreservationfront')}}">
-                                <span><i class="uil uil-compass"></i></span><h3>Les réservations</h3>
-                            </a>
-                            <a class="menu-item" id="notifications">
-                                <span><i class="uil uil-bell"><small class="notification-count">9+</small></i></span><h3>Notifications</h3>
-                                <!-------------------- NOTIFICATION POPUP ---------------->
-                                <div class="notifications-popup">
-                                    <div>
-                                        <div class="profile-picture">
-                                            <img src="{{ asset('frontoffice/images/profile-2.jpg') }}" alt="">
-                                        </div>
-                                        <div class="notification-body">
-                                            <b>Keke Benjamin</b> Reserver votre Offre
-                                            <small class="text-muted">2 DAYS AGO</small>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="profile-picture">
-                                            <img src="{{ asset('frontoffice/images/profile-3.jpg') }}" alt="">
-                                        </div>
-                                        <div class="notification-body">
-                                            <b>John Doe</b> commented on your post
-                                            <small class="text-muted">1 HOUR AGO</small>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="profile-picture">
-                                            <img src="{{ asset('frontoffice/images/profile-4.jpg') }}" alt="">
-                                        </div>
-                                        <div class="notification-body">
-                                            <b>Mary Oppong</b> and <b>283 others </b> liked your post
-                                            <small class="text-muted">4 MINUTES AGO</small>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="profile-picture">
-                                            <img src="{{ asset('frontoffice/images/profile-5.jpg') }}" alt="">
-                                        </div>
-                                        <div class="notification-body">
-                                            <b>Doris Y. Lartey</b> commented on a post you are tagged in
-                                            <small class="text-muted">2 DAYS AGO</small>
-                                        </div>
-                                    </div>
+								</div>
+								<div class="handle">
+									<h4>{{app.user.lastname}}</h4>
 
-                                </div>
-                                <!-------------------- END NOTIFICATION POPUP ---------------->
-                            </a>
-
-                            <a class="menu-item">
-                                <span><i class="uil uil-compass"></i></span><h3>Reservation</h3>
-                            </a>
-                            <a class="menu-item">
-                                <span><i class="uil uil-schedule"></i></span><h3>Planning</h3>
-                            </a>
-                            <a class="menu-item" id="theme">
-                                <span><i class="uil uil-palette"></i></span><h3>Theme</h3>
-                            </a>
-
-                        </div>
-                        <!------------------- END OF SIDEBAR -------------------->
-                        <label for="create-post" class="btn btn-primary">Create Post</label>
-                    </div>
-                {% endblock %}
-
-                <!------------------- END OF LEFT -------------------->
-                {% block middle %}
-                    <div class="middle">
-                        <!--======================== MIDDLE ==========================-->
-
-                        <!--======================== END OF MIDDLE ==========================-->
-                    </div>
-                    <!------------------------------- END OF FEEDS ------------------------------------>
-
-                {% endblock %}
+								</div>
+							</a>
 
 
+							<!-------------------- SIDEBAR ------------------------->
+
+							<div class="sidebar">
+								<a class="menu-item active" href="{{path('app_Alloffre')}}">
+									<span>
+										<i class="uil uil-gift"></i>
+									</span>
+									<h3>Mes Offres</h3>
+								</a>
+								<a class="menu-item" href="{{path('app_listreservationfront')}}">
+									<span>
+										<i class="uil uil-compass"></i>
+									</span>
+									<h3>Les réservations</h3>
+								</a>
+								<a class="menu-item" id="notifications">
+									<span>
+										<i class="uil uil-bell">
+											<small class="notification-count">9+</small>
+										</i>
+									</span>
+									<h3>Notifications</h3>
+									<!-------------------- NOTIFICATION POPUP ---------------->
+									<div class="notifications-popup">
+										<div>
+											<div class="profile-picture">
+												<img src="{{ asset('frontoffice/images/profile-2.jpg') }}" alt="">
+											</div>
+											<div class="notification-body">
+												<b>Keke Benjamin</b>
+												Reserver votre Offre
+												<small class="text-muted">2 DAYS AGO</small>
+											</div>
+										</div>
+										<div>
+											<div class="profile-picture">
+												<img src="{{ asset('frontoffice/images/profile-3.jpg') }}" alt="">
+											</div>
+											<div class="notification-body">
+												<b>John Doe</b>
+												commented on your post
+												<small class="text-muted">1 HOUR AGO</small>
+											</div>
+										</div>
+										<div>
+											<div class="profile-picture">
+												<img src="{{ asset('frontoffice/images/profile-4.jpg') }}" alt="">
+											</div>
+											<div class="notification-body">
+												<b>Mary Oppong</b>
+												and
+												<b>283 others
+												</b>
+												liked your post
+												<small class="text-muted">4 MINUTES AGO</small>
+											</div>
+										</div>
+										<div>
+											<div class="profile-picture">
+												<img src="{{ asset('frontoffice/images/profile-5.jpg') }}" alt="">
+											</div>
+											<div class="notification-body">
+												<b>Doris Y. Lartey</b>
+												commented on a post you are tagged in
+												<small class="text-muted">2 DAYS AGO</small>
+											</div>
+										</div>
+
+									</div>
+									<!-------------------- END NOTIFICATION POPUP ---------------->
+								</a>
+
+								<a class="menu-item" id="notifications" href="{{path('app_activiter')}}">
+									<span>
+										<i class="uil uil-bell"></i>
+									</span>
+									<h3>Planning</h3>
+								</a>
+								<a class="menu-item" href="{{path('app_calendar')}}">
+									<span>
+										<i class="uil uil-schedule"></i>
+									</span>
+									<h3>Calenderier</h3>
+								</a>
+								<a class="menu-item" id="theme">
+									<span>
+										<i class="uil uil-palette"></i>
+									</span>
+									<h3>Theme</h3>
+								</a>
+
+							</div>
+							<!------------------- END OF SIDEBAR -------------------->
+							<label for="create-post" class="btn btn-primary">Create Post</label>
+						</div>
+					{% endblock %}
+
+					<!------------------- END OF LEFT -------------------->
+					{% block middle %}
+						<div class="middle"><!--======================== MIDDLE ==========================-->
+
+							<!--======================== END OF MIDDLE ==========================-->
+						</div>
+						<!------------------------------- END OF FEEDS ------------------------------------>
+
+					{% endblock %}
 
 
+					<!--======================== RIGHT ==========================-->
+					{% block right %}
+						<div class="right">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci dolor doloremque dolores doloribus inventore libero maiores nemo nihil nisi non officia officiis quae, quos sunt suscipit veniam? Consequuntur est neque numquam obcaecati odio perferendis quaerat rem. At aut consequatur ex fuga maxime, numquam odit quidem velit voluptate voluptatum? Aliquid asperiores enim officiis quo soluta totam ut veritatis, vero! Ab aliquid architecto asperiores atque culpa cum cupiditate doloremque dolorum earum eius eligendi error explicabo fuga ipsam ipsum minus nemo nostrum numquam odit, officiis omnis perspiciatis placeat possimus sed similique voluptatem voluptates. At corporis debitis doloribus omnis provident velit. Autem, quos?
+						</div>
+					{% endblock %}
+					<!--====================== END OF RIGHT ==========================-->
 
-                <!--======================== RIGHT ==========================-->
-                {% block right %}
-                    <div class="right">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci dolor doloremque dolores doloribus inventore libero maiores nemo nihil nisi non officia officiis quae, quos sunt suscipit veniam? Consequuntur est neque numquam obcaecati odio perferendis quaerat rem. At aut consequatur ex fuga maxime, numquam odit quidem velit voluptate voluptatum? Aliquid asperiores enim officiis quo soluta totam ut veritatis, vero! Ab aliquid architecto asperiores atque culpa cum cupiditate doloremque dolorum earum eius eligendi error explicabo fuga ipsam ipsum minus nemo nostrum numquam odit, officiis omnis perspiciatis placeat possimus sed similique voluptatem voluptates. At corporis debitis doloribus omnis provident velit. Autem, quos?
-                    </div>
-                {% endblock %}
-                <!--====================== END OF RIGHT ==========================-->
+				</div>
+			</main>
 
-            </div>
-        </main>
+			{% block popup%}{% endblock %}
+		</div>
+		{% block javascripts %}
+			<script src="{{ asset('frontoffice/js/index.js') }}"></script>
 
-        {% block popup%}
-
-        {% endblock %}
-    </div>
-{% block javascripts %}
-    <script src="{{ asset('frontoffice/js/index.js') }}"></script>
-
-{% endblock %}
-{% endblock %}
+		{% endblock %}
+	{% endblock %}
 
 
 </html>
